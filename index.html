@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hapus permanen watermark Gemini AI atau Nano Banana dengan proses super cepat secara offline dan aman" />
+  <title>Gemini AI Watermark Remover - Nano Banana Watermark Remover</title>
+  <meta name="keywords" content="remove watermark, remove watermark from image, ai watermark remover, gemini ai watermark remover, ano banana watermark remover, watermarkremover.io, watermark, watermark free, watermark free image, remove watermark online"/>
+  <style>
+    :root {
+      --primary: #4285f4;
+      --success: #34a853;
+      --light: #f8f9fa;
+      --dark: #202124;
+      --gray: #dadce0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      padding: 1rem;
+    }
+    header, main { max-width: 800px; margin: auto; }
+    h1 {
+      font-size: 1.8rem;
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    p {
+      text-align: center;
+      margin: 0.7rem 0;
+      font-size: 0.95rem;
+      color: #5f6368;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      margin: 1.5rem 0;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin: 0.8rem 0;
+    }
+    .btn-success { background: var(--success); }
+    .btn:disabled {
+      background: var(--gray);
+      cursor: not-allowed;
+    }
+    .upload-section {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .comparison {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .image-box {
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+    }
+    .image-box img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-height: 400px;
+      object-fit: contain;
+    }
+    .image-label {
+      margin-top: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .status {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #d93025;
+      text-align: center;
+      min-height: 1.4rem;
+    }
+    .hidden { display: none; }
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #5f6368;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>✨ Gemini Watermark Remover</h1>
+    <p>Hapus permanen watermark Gemini AI/Nano Banana dengan proses super cepat</p>
+  </header>
+
+  <main>
+    <div class="card">
+      <div class="upload-section">
+        <p style="background:#e8f0fe;padding:0.8rem;border-radius:12px;">
+          ⚠️ Privasi aman, 100% client side diproses di browser user, tidak ada gambar yang diupload ke server
+        </p>
+        <input type="file" id="uploadInput" accept="image/*" class="hidden" />
+        <button id="uploadBtn" class="btn">📤 Pilih Gambar</button>
+      </div>
+
+      <div id="comparison" class="comparison hidden">
+        <div class="image-box">
+          <div class="image-label">Before</div>
+          <img id="imgBefore" src="" alt="Gambar asli" />
+        </div>
+        <div class="image-box">
+          <div class="image-label">✅ After</div>
+          <img id="imgAfter" src="" alt="Gambar tanpa watermark" />
+        </div>
+      </div>
+
+      <button id="downloadBtn" class="btn btn-success hidden" style="margin-top:1.5rem;">⬇️ Unduh Hasil</button>
+      <div id="status" class="status"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>🔒 Semua proses terjadi di browser Anda — tidak ada data dikirim ke server.</p>
+    <p>Berdasarkan: <em>Gemini NanoBanana Watermark Remover</em></p>
+  </footer>
+
+  <!-- Engine & base64 assets -->
+  <script src="script.js"></script>
+</body>
+</html>
