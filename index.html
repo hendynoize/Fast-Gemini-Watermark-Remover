@@ -103,11 +103,26 @@
       font-size: 0.85rem;
       color: #5f6368;
     }
+      .center-image {
+  display: block;
+  margin: 0 auto;      /* posisi center */
+  width: 50%;          /* desktop */
+  height: auto;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .center-image {
+    width: 100%;
+  }
+}
+
   </style>
 </head>
 <body>
   <header>
     <h1>✨ Gemini Watermark Remover</h1>
+    <center><img src="gemini-watermark-remover.jpg" class="center-image" width="50%" alt="Gemini Watermark Remover"></center>
     <p>Hapus permanen watermark Gemini AI/Nano Banana dengan proses super cepat</p>
   </header>
 
