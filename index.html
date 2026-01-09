@@ -12,156 +12,211 @@
 <meta content='Geware' name='apple-mobile-web-app-title'/>
 <meta content='true' name='apple-mobile-web-app-capable'/>
 <link rel="canonical" href="https://www.hendynoize.net/gemini-watermark-remover" />
-
-  <style>
-    :root {
-      --primary: #4285f4;
-      --success: #34a853;
-      --light: #f8f9fa;
-      --dark: #202124;
-      --gray: #dadce0;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--light);
-      color: var(--dark);
-      line-height: 1.6;
-      padding: 1rem;
-    }
-    header, main { max-width: 800px; margin: auto; }
-    h1 {
-      font-size: 1.8rem;
-      margin: 1.5rem 0;
-      text-align: center;
-    }
-    p {
-      text-align: center;
-      margin: 0.7rem 0;
-      font-size: 0.95rem;
-      color: #5f6368;
-    }
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      margin: 1.5rem 0;
-    }
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 12px;
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      margin: 0.8rem 0;
-    }
-    .btn-success { background: var(--success); }
-    .btn:disabled {
-      background: var(--gray);
-      cursor: not-allowed;
-    }
-    .upload-section {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-    .comparison {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-    .image-box {
-      flex: 1;
-      min-width: 250px;
-      text-align: center;
-    }
-    .image-box img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      max-height: 400px;
-      object-fit: contain;
-    }
-    .image-label {
-      margin-top: 0.5rem;
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-    .status {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #d93025;
-      text-align: center;
-      min-height: 1.4rem;
-    }
-    .hidden { display: none; }
-    footer {
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 0.85rem;
-      color: #5f6368;
-    }
-      .center-image {
-  display: block;
-  margin: 0 auto;      /* posisi center */
-  width: 50%;          /* desktop */
-  height: auto;
+<style>
+:root {
+  --primary: #4285f4;
+  --success: #34a853;
+  --light: #f8f9fa;
+  --dark: #202124;
+  --gray: #dadce0;
+  --radius: 16px;
+  --shadow: 0 8px 24px rgba(0,0,0,.08);
+  --transition: .35s cubic-bezier(.4,0,.2,1);
 }
-
-/* Mobile */
-@media (max-width: 768px) {
-  .center-image {
-    width: 100%;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+  color: var(--dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+header, main {
+  max-width: 840px;
+  margin: auto;
+  width: 100%;
+  padding: 0 1rem;
+}
+header {
+  text-align: center;
+  padding: 2.5rem 0 1.5rem;
+}
+h1 {
+  font-size: clamp(1.6rem, 5vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -.5px;
+  margin-bottom: .5rem;
+  background: linear-gradient(90deg, #4285f4 0%, #34a853 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.subtitle {
+  font-size: clamp(.9rem, 2.5vw, 1.05rem);
+  color: #5f6368;
+}
+.hero-img {
+  width: clamp(220px, 45vw, 320px);
+  height: auto;
+  margin: 1rem auto;
+  display: block;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,.08));
+  border-radius: var(--radius);
+}
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+  transition: transform var(--transition);
+}
+.card:hover {
+  transform: translateY(-4px);
+}
+.privacy-badge {
+  background: #e8f0fe;
+  color: #1a73e8;
+  padding: .75rem 1rem;
+  border-radius: 12px;
+  font-size: .9rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: 1.25rem;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  width: 100%;
+  padding: 14px 20px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+.btn:hover:not(:disabled) {
+  background: #3367d6;
+  transform: translateY(-2px);
+}
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+.btn:disabled {
+  background: var(--gray);
+  cursor: not-allowed;
+}
+.btn-success {
+  background: var(--success);
+}
+.btn-success:hover:not(:disabled) {
+  background: #2e8b47;
+}
+.upload-section {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.comparison {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+.image-box img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  max-height: 400px;
+  object-fit: contain;
+  background: #f1f3f4;
+}
+.image-label {
+  margin-top: .5rem;
+  font-weight: 600;
+  font-size: .95rem;
+  color: #3c4043;
+}
+.status {
+  margin-top: 1rem;
+  font-size: .9rem;
+  color: #d93025;
+  text-align: center;
+  min-height: 1.4rem;
+}
+.hidden {
+  display: none;
+}
+footer {
+  text-align: center;
+  padding: 2rem 1rem 1.5rem;
+  font-size: .85rem;
+  color: #5f6368;
+  margin-top: auto;
+}
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  .card {
+    padding: 1.25rem;
+  }
+  .btn {
+    font-size: .95rem;
   }
 }
+</style>
 
-  </style>
-</head>
 <body>
   <header>
     <h1>✨ Gemini Watermark Remover</h1>
-    <center><img src="gemini-watermark-remover.jpg" class="center-image" width="50%" alt="Gemini Watermark Remover"></center>
-    <p>Hapus permanen watermark Gemini AI/Nano Banana dengan proses super cepat</p>
+    <p class="subtitle">Hapus permanen watermark Gemini AI / Nano Banana dengan proses super cepat</p>
+    <img src="gemini-watermark-remover.jpg" class="hero-img" alt="Gemini Watermark Remover">
   </header>
 
   <main>
     <div class="card">
       <div class="upload-section">
-        <p style="background:#e8f0fe;padding:0.8rem;border-radius:12px;">
-          ⚠️ Privasi aman, 100% client side diproses di browser user, tidak ada gambar yang diupload ke server
-        </p>
-        <input type="file" id="uploadInput" accept="image/*" class="hidden" />
+        <div class="privacy-badge">
+          <span>🔒</span>
+          <span>Privasi aman: 100% client-side, tidak ada gambar yang di-upload ke server</span>
+        </div>
+        <input type="file" id="uploadInput" accept="image/*" class="hidden">
         <button id="uploadBtn" class="btn">📤 Pilih Gambar</button>
       </div>
 
       <div id="comparison" class="comparison hidden">
         <div class="image-box">
           <div class="image-label">Before</div>
-          <img id="imgBefore" src="" alt="Gambar asli" />
+          <img id="imgBefore" src="" alt="Gambar asli">
         </div>
         <div class="image-box">
           <div class="image-label">✅ After</div>
-          <img id="imgAfter" src="" alt="Gambar tanpa watermark" />
+          <img id="imgAfter" src="" alt="Gambar tanpa watermark">
         </div>
       </div>
 
-      <button id="downloadBtn" class="btn btn-success hidden" style="margin-top:1.5rem;">⬇️ Unduh Hasil</button>
+      <button id="downloadBtn" class="btn btn-success hidden">⬇️ Unduh Hasil</button>
       <div id="status" class="status"></div>
     </div>
   </main>
 
   <footer>
-    <p>🔒 Semua proses terjadi di browser Anda tidak ada data dikirim ke server.</p>
-  </footer>
+    <p>Semua proses terjadi di browser Anda — tidak ada data dikirim ke server.</p>
 
-  <!-- Engine & base64 assets -->
+  </footer>
   <script src="https://cdnjs.hendynoize.net/geware.js"></script>
 </body>
 </html>
